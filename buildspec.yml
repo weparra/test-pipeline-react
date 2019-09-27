@@ -19,7 +19,7 @@ phases:
       - aws s3 cp --recursive --acl public-read public s3://gatsby-test123/
       #- aws s3 cp --acl public-read --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./build/service-worker.js s3://test-pipeline-deploymentbucket-bekqcjpeiy5k/
       #- aws s3 cp --acl public-read --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./build/index.html s3://test-pipeline-deploymentbucket-bekqcjpeiy5k/
-      - aws cloudfront create-invalidation --distribution-id E2PIQ80OOM7YQY --paths /index.html /service-worker.js
+      - aws cloudfront create-invalidation --distribution-id E2HRLAR7ZA85XB --paths /*
 #artifacts:
 # stores all files within a s3 deploy and build bucket
 # cf dist will grab static files from deploy bucket  
