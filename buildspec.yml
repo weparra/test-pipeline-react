@@ -11,8 +11,6 @@ phases:
       - echo Build started on `date`
       # - gatsby build
       - docker-compose -p websvc -f docker-compose.yml build
-      - docker-compose -f docker-compose.ci.yml pull
-      - docker-compose -f docker-compose.ci.yml run --rm tests
       - docker tag webservice "$IMAGE_URI"
       #- npm run build
   post_build:
