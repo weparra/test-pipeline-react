@@ -5,6 +5,7 @@ phases:
       docker: 18
   pre_build:
     commands:
+      - sudo systemctl start docker
       - pwd
       - ls
       - echo Installing source NPM dependencies...
