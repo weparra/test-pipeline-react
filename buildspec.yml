@@ -5,8 +5,6 @@ phases:
       docker: 18
   pre_build:
     commands:
-      - docker
-      - docker-compose
       - pwd
       - ls
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
@@ -18,7 +16,7 @@ phases:
       - pwd
       - echo Build started on `date`
       # - gatsby build
-      - docker-compose up 
+      - docker-compose build
       - docker tag webservice "$IMAGE_URI"
       #- npm run build
   post_build:
