@@ -5,11 +5,14 @@ phases:
       docker: 18
   pre_build:
     commands:
+      - pwd 
       - $(aws ecr get-login)
       - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
       - IMAGE_URI="$REPOSITORY_URI:$TAG"
+      - ls
   build:
     commands:
+      - ps -efl | grep -i docker
       - docker-compose -f ./docker-compose.yml build
       - docker tag gatsby "$IMAGE_URI"
   post_build:
