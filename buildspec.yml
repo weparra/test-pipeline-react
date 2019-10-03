@@ -5,6 +5,7 @@ phases:
       docker: 18
   pre_build:
     commands:
+      - docker-machine env dev
       - pwd
       - ls
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
