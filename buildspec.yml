@@ -10,6 +10,8 @@ phases:
       - IMAGE_URI="$REPOSITORY_URI:$TAG"  
   build:
     commands:
+      - ls
+      - pwd
       - echo Build started on `date`
       # - gatsby build
       - docker-compose build
