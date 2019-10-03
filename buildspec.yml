@@ -10,7 +10,7 @@ phases:
       - IMAGE_URI="$REPOSITORY_URI:$TAG"
   build:
     commands:
-      - docker-compose docker-compose.yml build
+      - docker-compose -f ./docker-compose.yml build
       - docker tag gatsby "$IMAGE_URI"
   post_build:
     commands:
