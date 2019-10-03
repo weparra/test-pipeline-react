@@ -5,10 +5,10 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    working_dir: /
+    working_dir: /src
     command: ./entrypoint.sh
     ports:
       - "8000:8000"
     volumes:
-     - .:/
+     - .:/src
      - /node_modules/

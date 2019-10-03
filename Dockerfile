@@ -3,7 +3,7 @@ FROM node:12-alpine as builder
 RUN apk update && apk add build-base autoconf automake libtool pkgconfig nasm
 
 # Add the package.json file and build the node_modules folder
-WORKDIR /
+WORKDIR /src
 
 # Get a clean image with gatsby-cli and the pre-built node modules
 FROM node:12-alpine
