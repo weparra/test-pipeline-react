@@ -18,7 +18,7 @@ phases:
       - pwd
       - echo Build started on `date`
       # - gatsby build
-      - docker-compose build
+      - docker build
       - docker tag webservice "$IMAGE_URI"
       #- npm run build
   post_build:
