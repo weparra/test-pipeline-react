@@ -5,10 +5,10 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    working_dir: /gatsby-site
+    working_dir: /
     command: ./entrypoint.sh
     ports:
       - "8000:8000"
     volumes:
-     - .:/gatsby-site
-     - /gatsby-site/node_modules/
+     - .:/
+     - /node_modules/
