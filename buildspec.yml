@@ -6,7 +6,6 @@ phases:
   pre_build:
     commands:
       - docker
-      - sudo service docker status
       - pwd
       - ls
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
