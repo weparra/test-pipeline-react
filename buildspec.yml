@@ -13,7 +13,7 @@ phases:
   build:
     commands:
       - ps -efl | grep -i docker
-      - docker-compose -f ./docker-compose.yml build
+      - docker-compose build
       - docker tag gatsby "$IMAGE_URI"
   post_build:
     commands:
