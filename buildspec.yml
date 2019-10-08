@@ -5,6 +5,7 @@ phases:
       docker: 18
   pre_build:
     commands:
+      - yum install docker
       - sudo service docker status
       - pwd 
       - ls
