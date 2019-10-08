@@ -7,19 +7,21 @@ phases:
     commands:
       - pwd 
       - ls
-      # - $(aws ecr get-login)
-      # - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
-      # - IMAGE_URI="$REPOSITORY_URI:$TAG"
+      - cd app/
+      - $(aws ecr get-login)
+      - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
+      - IMAGE_URI="$REPOSITORY_URI:$TAG"
       - ls
+
   build:
     commands:
       - ps -efl | grep -i docker
-      # - docker-compose build
-      # - docker tag gatsby "$IMAGE_URI"
+      - docker-compose build
+      - docker tag gatsby "$IMAGE_URI"
   post_build:
     commands:
-      # - docker push "$IMAGE_URI"
-      # - printf '[{"name":"${EnvironmentName}","imageUri":"%s"}]' "$IMAGE_URI" > images.json
+      - docker push "$IMAGE_URI"
+      - printf '[{"name":"${EnvironmentName}","imageUri":"%s"}]' "$IMAGE_URI" > images.json
 artifacts:
   files: images.json
 
