@@ -8,7 +8,7 @@ phases:
       - pwd 
       - ls
       - $(aws ecr get-login --no-include-email)
-      - IMAGE_URI="gatbsy-js-image"
+      - IMAGE_URI="383462605848.dkr.ecr.us-east-1.amazonaws.com/gatsby-js"
 
   build:
     commands:
