@@ -8,7 +8,7 @@ phases:
       - pwd 
       - ls
       - $(aws ecr get-login --no-include-email)
-      - IMAGE_URI="${REPOSITORY_URI}:${SRC_HASH}"
+      - IMAGE_URI="gatbsy-js-image"
 
   build:
     commands:

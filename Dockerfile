@@ -6,9 +6,6 @@ EXPOSE 8000
 RUN npm install -g gatsby-cli yarn
 
 
-
-
-
 ADD app /app
 WORKDIR /app
 RUN yarn cache clean
