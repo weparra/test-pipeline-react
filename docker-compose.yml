@@ -1,14 +1,35 @@
-
 version: '3.3'
 services:
-  gatsby:
-    build: 
+  web-gatsby:
+    build:
       context: .
       dockerfile: Dockerfile
-    working_dir: /src
-    command: ./entrypoint.sh
     ports:
       - "8000:8000"
     volumes:
-     - .:/src
-     - /node_modules/
+      - /app
+      # - .:/app
+    environment:
+      - NODE_ENV=development
+      - GATSBY_WEBPACK_PUBLICPATH=/
+
+
+
+
+
+
+
+
+# version: '3.3'
+# services:
+#   gatsby:
+#     build: 
+#       context: .
+#       dockerfile: Dockerfile
+#     working_dir: /src
+#     command: ./entrypoint.sh
+#     ports:
+#       - "8000:8000"
+#     volumes:
+#      - .:/src
+#      - /node_modules/

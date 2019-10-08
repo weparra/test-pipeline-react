@@ -1,13 +1,16 @@
-FROM node:12-alpine as builder
-# Get the necessary build tools
-RUN apk update && apk add build-base autoconf automake libtool pkgconfig nasm
+FROM node:10
 
-# Add the package.json file and build the node_modules folder
-WORKDIR /src
+# Also exposing VSCode debug ports
+EXPOSE 8000
 
-# Get a clean image with gatsby-cli and the pre-built node modules
-FROM node:12-alpine
-RUN npm install --global gatsby-cli && gatsby telemetry --disable && mkdir /save
-COPY /node_modules /save/node_modules
+RUN npm install -g gatsby-cli yarn
 
- 
+
+
+
+
+ADD app /app
+WORKDIR /app
+RUN yarn cache clean
+RUN npm install 
+CMD ["yarn", "develop", "-H", "0.0.0.0" ]
