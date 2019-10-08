@@ -5,25 +5,21 @@ phases:
       docker: 18
   pre_build:
     commands:
-      - yum install docker
-      - sudo service docker status
       - pwd 
       - ls
-      - cd app/
-      - $(aws ecr get-login)
-      - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
-      - IMAGE_URI="$REPOSITORY_URI:$TAG"
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
       - ls
-
   build:
     commands:
       - ps -efl | grep -i docker
       - docker-compose build
-      - docker tag gatsby "$IMAGE_URI"
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
-      - docker push "$IMAGE_URI"
-      - printf '[{"name":"${EnvironmentName}","imageUri":"%s"}]' "$IMAGE_URI" > images.json
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_URI" > images.json
 artifacts:
   files: images.json
 
