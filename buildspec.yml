@@ -5,7 +5,7 @@ phases:
       docker: 18
   pre_build:
     commands:
-      - service docker restart
+      - service dockerd restart
       - pwd 
       - ls
       - cd app/
