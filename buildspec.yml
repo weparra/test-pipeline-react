@@ -17,7 +17,7 @@ phases:
   post_build:
     commands:
       - docker push "$IMAGE_URI"
-      - printf '[{"name":"${staging}","imageUri":"%s"}]' "$IMAGE_URI" > images.json
+      - printf '[{"name":"${adacb5fb-b461-4ffa-915e-9c5a12174e68}","imageUri":"%s"}]' "$IMAGE_URI" > images.json
 artifacts:
   files: images.json
 
