@@ -22,17 +22,12 @@ phases:
         aws s3 cp --acl public-read 
         --cache-control="max-age=0, no-cache, no-store, must-revalidate" 
         ./build/service-worker.js s3://pipelinetest-deploybucket-8558oxd7kk3d/
-      # set the cache-control headers for index.html to prevent
-      # browser caching
-      - >
-        aws s3 cp --acl public-read 
-        --cache-control="max-age=0, no-cache, no-store, must-revalidate" 
-        ./build/index.html s3://pipelinetest-deploybucket-8558oxd7kk3d
+
       # invalidate the CloudFront cache for index.html and service-worker.js
       # to force CloudFront to update its edge locations with the new versions
       - >
         aws cloudfront create-invalidation --distribution-id $E2DE2A1WL6SD1A 
-        --paths /index.html /service-worker.js
+        --paths /*
 artifacts:
   files:
     - '**/*'
