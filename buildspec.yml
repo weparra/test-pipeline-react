@@ -8,24 +8,16 @@ phases:
       - pwd 
       - ls
       - $(aws ecr get-login --no-include-email)
-      - REPOSITORY_URI="383462605848.dkr.ecr.us-east-1.amazonaws.com/gatsby-js"
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - IMAGE_URI="383462605848.dkr.ecr.us-east-1.amazonaws.com/gatsby-js"
 
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...  
-      - docker build -t $REPOSITORY_URI:latest -f Dockerfile .
+      - ps -efl | grep -i docker
+      - docker build --tag "$IMAGE_URI" -f Dockerfile .
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image definitions file...
-      - printf '[{"name":"gatsby-js","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > images.json
-artifacts:
+      - docker push "$IMAGE_URI"
+      - printf '[{"name":"${gatsby-test}","imageUri":"%s"}]' "$IMAGE_URI" > images.json
 artifacts:
   files: images.json
 
