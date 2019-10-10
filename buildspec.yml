@@ -15,19 +15,19 @@ phases:
       - gatsby build
   post_build:
     commands:
-      -  aws s3 cp --recursive --acl public-read public s3://$pipelinetest-deploybucket-8558oxd7kk3d/ 
+      -  aws s3 cp --recursive --acl public-read public s3://pipelinetest-deploybucket-8558oxd7kk3d/ 
       # set the cache-control headers for service-worker.js to prevent
       # browser caching
       - >
         aws s3 cp --acl public-read 
         --cache-control="max-age=0, no-cache, no-store, must-revalidate" 
-        ./build/service-worker.js s3://$pipelinetest-deploybucket-8558oxd7kk3d/
+        ./build/service-worker.js s3://pipelinetest-deploybucket-8558oxd7kk3d/
       # set the cache-control headers for index.html to prevent
       # browser caching
       - >
         aws s3 cp --acl public-read 
         --cache-control="max-age=0, no-cache, no-store, must-revalidate" 
-        ./build/index.html s3://$pipelinetest-deploybucket-8558oxd7kk3d
+        ./build/index.html s3://pipelinetest-deploybucket-8558oxd7kk3d
       # invalidate the CloudFront cache for index.html and service-worker.js
       # to force CloudFront to update its edge locations with the new versions
       - >
