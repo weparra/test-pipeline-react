@@ -3,6 +3,7 @@ phases:
   pre_build:
     commands:
       - npm install --global gatsby-cli
+      - cd app/
       - npm install
       - echo Installing source NPM dependencies...
   build:
