@@ -2,13 +2,13 @@ version: 0.1
 phases:
   pre_build:
     commands:
-      - yarn install gatsby-cli
-      - echo Installing source NPM dependencies...
+      - npm install --global gatsby-cli
       - npm install
+      - echo Installing source NPM dependencies...
   build:
     commands:
       - ls
-      - pws
+      - pwd
       - echo Build started on `date`
       - gatsby build
   post_build:
