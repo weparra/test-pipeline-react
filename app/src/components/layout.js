@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
         <footer>
           © {new Date().getFullYear()}, Built with williams power of magic hahaha ...ps i dunno why were using gatsby ??? 
           {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
+          <a href="https://www.gatsbyjs.org/ www.youtube.com">Gatsby</a>
         </footer>
       </div>
     </>
