@@ -1,7 +1,7 @@
 FROM node:10
 
 # Also exposing VSCode debug ports
-EXPOSE 8000
+EXPOSE 80
 
 RUN npm install -g gatsby-cli yarn
 
