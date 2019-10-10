@@ -15,7 +15,7 @@ phases:
       - gatsby build
   post_build:
     commands:
-      -  aws s3 cp --recursive --acl public-read s3://$pipelinetest-deploybucket-8558oxd7kk3d/ 
+      -  aws s3 cp --recursive --acl public-read public s3://$pipelinetest-deploybucket-8558oxd7kk3d/ 
       # set the cache-control headers for service-worker.js to prevent
       # browser caching
       - >
