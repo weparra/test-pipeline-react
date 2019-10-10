@@ -1,21 +1,21 @@
-version: 0.1
+version: 0.2
+#the instruction needed to build our app broken down into stages
 phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+      
   pre_build:
     commands:
       - npm install --global gatsby-cli
-      - echo Installing source NPM dependencies...
+      - cd app/
+      - npm install
   build:
     commands:
-      - ls
-      - pwd
-      - cd app/
-      - npm install 
-      - echo Build started on `date`
       - gatsby build
   post_build:
     commands:
-      # copy the contents of /build to S3
-      - aws s3 cp --recursive --acl public-read ./build s3://${DeployBucket}/ 
+      -  aws s3 cp --recursive --acl public-read public s3://${DeployBucket}/ 
       # set the cache-control headers for service-worker.js to prevent
       # browser caching
       - >
